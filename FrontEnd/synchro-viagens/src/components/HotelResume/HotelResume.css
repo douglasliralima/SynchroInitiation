@@ -1,0 +1,17 @@
+.hotel-resume {
+    margin-top: 2%;
+}
+
+.hotel-resume img {
+    display: inline;
+}
+
+.hotel-resume ul {
+    padding: 0px;
+}
+
+.hotel-resume ul li {
+    list-style-type: none;
+    display: inline;
+    margin : 10px 10px 0px 0px;
+}
