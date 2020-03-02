@@ -1,17 +1,34 @@
 .hotel-resume {
-    margin-top: 2%;
+    display : grid;
+    grid-template-areas:
+            "image-description resume-description payment-description";
+    grid-gap : 30px;
+    margin: 5% 15%;
+    width: max-content;
+    background: white;
+    border: 1px solid grey;
+    box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    border-radius: 10px;
+
 }
 
-.hotel-resume img {
-    display: inline;
+.hotel-resume .image-description {
+    grid-area: image-description;
 }
 
-.hotel-resume ul {
-    padding: 0px;
+.hotel-resume .image-description img{
+    width: 250px;
+    height: 200px;
+    margin: 25px 10px;
 }
 
-.hotel-resume ul li {
-    list-style-type: none;
-    display: inline;
-    margin : 10px 10px 0px 0px;
+.hotel-resume .resume-description {
+    grid-area : resume-description;
+    margin: 25px 0px;
+}
+
+.hotel-resume .payment-description {
+    grid-area : payment-description;
+    text-align: center;
+    margin: 25px 10px;
 }

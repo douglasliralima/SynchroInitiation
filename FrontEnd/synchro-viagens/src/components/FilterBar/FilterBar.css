@@ -1,3 +1,37 @@
-#filter-bar img {
-    display: inline;
+.filter-bar {
+    margin : 0px 50px;
+    display : grid;
+    grid-gap : 20px;
+    grid-template-areas:
+    'logo travelling-filter';
+}
+
+.filter-bar img.synchro-logo {
+    display: block;
+    grid-area : logo;
+    max-height: 100px;
+    min-width: 300px;
+}
+
+.filter-bar .travelling-filter{
+    grid-area : travelling-filter;
+    background-color: #3d85c6ff;
+    border: 1px solid grey;
+    box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    border-radius: 10px;
+    padding : 10px;
+    max-width: max-content;
+}
+
+.filter-bar .travelling-filter label{
+    margin : 5px;
+}
+.filter-bar .travelling-filter span{
+    margin-left: 10px;
+    font-weight: bold;
+    color : white;
+}
+
+.filter-bar .travelling-filter input{
+    margin : 5px;
 }

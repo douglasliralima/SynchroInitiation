@@ -1,10 +1,12 @@
 import React from 'react';
-import PrincipalPage from "./pages/PrincipalPage.js"
+import HotelPage from "./pages/HotelPage.js"
+
+import "./App.css"
 
 function App() {
   return (
     <div className="App">
-      <PrincipalPage/>
+      <HotelPage/>
     </div>
   );
 }
