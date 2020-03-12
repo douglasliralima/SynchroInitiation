@@ -95,4 +95,6 @@ public class HotelController {
 
         return mapHotels;
     }
+
+    
 }
