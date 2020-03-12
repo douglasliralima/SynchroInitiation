@@ -15,6 +15,7 @@ import com.synchro.hotel.models.Viability;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +48,9 @@ public class HotelController {
 
         final Location location = daoLocation.load(city);
 
-        final Hotel hotel = new Hotel(name, location, price, viability);
-
+        final Hotel hotel = new Hotel(name, location, price);
+        hotel.setViability(viability);
+        
         daoHotel.save(hotel);
     }
 
@@ -62,15 +64,35 @@ public class HotelController {
         map.put("name", hotel.getName());
         map.put("city", hotel.getLocation().getCity());
         map.put("price", Integer.toString(hotel.getPrice()));
+
+        /*
         String[] hotelViabilities = new String[hotel.getViability().length];
         for (int i = 0; i < hotelViabilities.length; i++){
             hotelViabilities[i] = Integer.toString(hotel.getViability()[i].getViability_flag());
         }
 
         map.put("viabilities", Arrays.toString(hotelViabilities));
-
+        */
         return map;
     }
 
+    
+    @GetMapping("/hotels")
+    public @ResponseBody HashMap<Integer, HashMap<String, String>> getHotels(@RequestParam final String city) {
 
+        final List<Hotel> hotels = daoHotel.loadAll(city);
+
+        final HashMap<Integer, HashMap<String, String>> mapHotels = new HashMap<>();
+        
+        HashMap<String, String> hotelMap;
+        for(int i = 0; i < hotels.size(); i++){
+            hotelMap = new HashMap<>();
+            hotelMap.put("name", hotels.get(i).getName());
+            hotelMap.put("city", hotels.get(i).getLocation().getCity());
+            hotelMap.put("price", Integer.toString(hotels.get(i).getPrice()));
+            mapHotels.put(i, hotelMap);
+        }
+
+        return mapHotels;
+    }
 }

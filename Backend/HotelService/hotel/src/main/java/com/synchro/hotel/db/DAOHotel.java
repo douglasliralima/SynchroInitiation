@@ -49,9 +49,11 @@ public class DAOHotel {
 
         Location location = jdbctemplate.queryForObject(sql, new Object[] { name },
                 (rs, rowNum) -> new Location(rs.getString("city"), rs.getString("country")));
-
-        sql = "SELECT * FROM viability WHERE name = ?";
         
+        
+        /*
+        sql = "SELECT * FROM viability WHERE name = ?";
+       
         List<Viability> aux = jdbctemplate.query(sql,new Object[] { name },
         (rs, rowNum) -> new Viability(rs.getString("name"), rs.getInt("month"), rs.getInt("viability_flag")));
         Viability[] viabilities = new Viability[12];
@@ -60,12 +62,30 @@ public class DAOHotel {
             viabilities[i] = aux.get(i);
         }
         
+        */
+        
         sql = "SELECT * FROM hotels WHERE name = ?";
         Hotel hotel = jdbctemplate.queryForObject(sql, new Object[] { name },
-                (rs, rowNum) -> new Hotel(rs.getString("name"), location, rs.getInt("price"), viabilities));
+                (rs, rowNum) -> new Hotel(rs.getString("name"), location, rs.getInt("price")));
         
 
         return hotel;
+	}
+
+
+
+	public List<Hotel> loadAll(String city) {
+        String sql = "SELECT * FROM location WHERE city = ?";
+
+        Location location = jdbctemplate.queryForObject(sql, new Object[] { city },
+                (rs, rowNum) -> new Location(rs.getString("city"), rs.getString("country")));
+
+        sql = "SELECT * FROM hotels WHERE city = ?";
+        
+        List<Hotel> hotels = jdbctemplate.query(sql,new Object[] { city },
+        (rs, rowNum) -> new Hotel(rs.getString("name"), location, rs.getInt("price")));
+        
+		return hotels;
 	}
     
 

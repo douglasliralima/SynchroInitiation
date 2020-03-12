@@ -1,7 +1,5 @@
 package com.synchro.hotel.models;
 
-import java.util.List;
-
 public class Hotel {
     private String name;
 
@@ -11,18 +9,17 @@ public class Hotel {
 
     private Integer price;
 
-    public Hotel(String name, Location location, Integer price, Viability[] viability) {
+    public Hotel(final String name, final Location location, final int price) {
         this.name = name;
         this.location = location;
         this.price = price;
-        this.viability = viability;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -30,7 +27,7 @@ public class Hotel {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(final Location location) {
         this.location = location;
     }
 
@@ -38,7 +35,7 @@ public class Hotel {
         return viability;
     }
 
-    public void setViability(Viability[] viability) {
+    public void setViability(final Viability[] viability) {
         this.viability = viability;
     }
 
@@ -46,7 +43,7 @@ public class Hotel {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(final Integer price) {
         this.price = price;
     }
 

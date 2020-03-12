@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "20ea4ac2-c60e-4281-b90b-9b4ecd0dbaca",
+		"name": "Hotels",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "InscriçãoDeHoteis",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hotel?name=Pedro Lucas&city=Salvador&viabilities=0,1,0,1,1,1,0,0,1,0,1,0&price=1200",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hotel"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Pedro Lucas"
+						},
+						{
+							"key": "city",
+							"value": "Salvador"
+						},
+						{
+							"key": "viabilities",
+							"value": "0,1,0,1,1,1,0,0,1,0,1,0"
+						},
+						{
+							"key": "price",
+							"value": "1200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperaçãoHotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperaçãoHoteisCidade",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
