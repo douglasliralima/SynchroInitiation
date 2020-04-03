@@ -1,7 +1,7 @@
 import axios from "axios"
 
-HotelApi = axios.create({
-    baseURL : "http://localhost:9080"
+const HotelApi = axios.create({
+    baseURL : "http://localhost:8080"
 })
 
 export default HotelApi;

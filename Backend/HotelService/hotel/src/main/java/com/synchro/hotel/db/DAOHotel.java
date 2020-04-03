@@ -31,13 +31,13 @@ public class DAOHotel {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ps.setString(1, hotel.getName());
-                ps.setInt(2, hotel.getViability()[i].getMonth());
-                ps.setInt(3, hotel.getViability()[i].getViability_flag());
+                ps.setInt(2, hotel.getViability().get(i).getMonth());
+                ps.setInt(3, hotel.getViability().get(i).getViability_flag());
             }
         
             @Override
             public int getBatchSize() {
-                return hotel.getViability().length;
+                return hotel.getViability().size();
             }
         });
 
@@ -85,6 +85,21 @@ public class DAOHotel {
         List<Hotel> hotels = jdbctemplate.query(sql,new Object[] { city },
         (rs, rowNum) -> new Hotel(rs.getString("name"), location, rs.getInt("price")));
         
+        /*
+            Basta fazer um for que, para cada hotel salvo em minha lista, 
+            eu busque as suas viabilidades
+        */
+        String hotelName;
+        List<Viability> viabilities;
+        for(int i = 0; i < hotels.size(); i++){
+            hotelName = hotels.get(i).getName();
+
+            sql = "SELECT * FROM viability WHERE name = ?";
+            viabilities = jdbctemplate.query(sql,new Object[] { hotelName },
+            (rs, rowNum) -> new Viability(rs.getString("name"), rs.getInt("month"), 
+            rs.getInt("viability_flag")));
+            hotels.get(i).setViability(viabilities);
+        }
 		return hotels;
 	}
     

@@ -1,11 +1,13 @@
 package com.synchro.hotel.models;
 
+import java.util.List;
+
 public class Hotel {
     private String name;
 
     private Location location;
 
-    private Viability[] viability;
+    private List<Viability> viability;
 
     private Integer price;
 
@@ -31,20 +33,20 @@ public class Hotel {
         this.location = location;
     }
 
-    public Viability[] getViability() {
-        return viability;
-    }
-
-    public void setViability(final Viability[] viability) {
-        this.viability = viability;
-    }
-
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(final Integer price) {
         this.price = price;
+    }
+
+    public List<Viability> getViability() {
+        return viability;
+    }
+
+    public void setViability(List<Viability> viability) {
+        this.viability = viability;
     }
 
 }

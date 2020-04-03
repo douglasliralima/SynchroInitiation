@@ -1,47 +1,74 @@
-import React from 'react'
+import React from 'react';
 
-import "./HotelResume.css"
+import temporaryImage from "./imgHotel.webp";
+import iconHotel from "./iconHotel.png";
 
-import temporaryImage from "./imgHotel.webp"
+import { Card, Avatar, Rate} from "antd";
+
+const { Meta } = Card;
+
 class HotelResume extends React.Component{
     constructor(props){
         super(props)
 
         this.state = {
             hotelTitle : this.props.hotelTitle,
-            geographicData : this.props.geographicData,
+            hotelLocation : this.props.hotelLocation,
             hotelAvaliation : this.props.hotelAvaliation,
             hotelAmenities : this.props.hotelAmenities,
             hotelPrice : this.props.hotelPrice
         }
     }
 
+    onHotelDefining = (e) => {
+        this.props.onHotelDefining(this.state.hotelTitle)
+    }
+
+    async componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.hotelTitle !== prevProps.hotelTitle) {
+          this.setState({
+            hotelTitle : this.props.hotelTitle,
+            hotelLocation : this.props.hotelLocation,
+            hotelAvaliation : this.props.hotelAvaliation,
+            hotelAmenities : this.props.hotelAmenities,
+            hotelPrice : this.props.hotelPrice
+          });
+        }
+      }
+
     render(){
-        const {hotelTitle, geographicData, hotelAvaliation, hotelAmenities, hotelPrice} = this.state;
+        let {hotelTitle, hotelLocation, hotelAvaliation, hotelAmenities, hotelPrice} = this.state;
+        // let starAvaliation = "";
+        // for(var i = 1; i <= 5; i++){
+        //     if (i <=parseInt(hotelAvaliation)) {
+        //         starAvaliation += "★";
+        //     } else{
+        //         starAvaliation += "☆";
+        //     }
+        // }
+        const hotelDescription = " R$" + hotelPrice + '\n' + hotelLocation;
         return (
             <div className = 'hotel-resume'>
-                <div className = "image-description">
-                    <img src = {temporaryImage} alt = {hotelTitle + 'image'}/>
-                </div>
-                <section className = "resume-description">
-                    <h3>{hotelTitle}</h3>
-                    <p>{geographicData}</p>
-                    <a href = '#'>ver mapa</a>
-                    <ul>
-                        <li>{hotelAvaliation}</li>
-                        <li>pontuação em estrelas</li>
-                        <li>{hotelAmenities}</li>
-                    </ul>
-                </section>
-                <section className = "payment-description">
-                    <div className = "price">
-                        <h3>Preço por pessoa</h3>
-                        <p>R${hotelPrice}</p>
-                    </div>
-                    <div className = "continuation-button">
-                        <button type = "button">Avançar</button>
-                    </div>
-                </section>
+                
+                <Card
+                    hoverable
+                    style={{ width: 280}}
+                    cover={<img alt="Imagem do Hotel"
+                    src={temporaryImage} 
+                    />}
+                    onClick = {this.onHotelDefining}
+                >
+                    <Meta 
+                    avatar={<Avatar size="large" src={iconHotel} />}
+                    title={hotelTitle} 
+                    description={hotelDescription} 
+                    />
+                    <Rate style = {{
+                        marginTop : "1rem"
+                    }}
+                    disabled defaultValue={parseInt(hotelAvaliation)} />
+                </Card>
             </div>
         );
     }

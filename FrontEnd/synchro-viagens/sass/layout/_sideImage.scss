@@ -1,0 +1,20 @@
+.side-image {
+    position : relative;
+    height: 60vh;
+    background-image : linear-gradient(
+        to left bottom,
+        $dark-yellow-alpha,
+        $medium-yellow-alpha),
+        url("../src/assets/hero.jpg");
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+
+    .heading-primary {
+        position: absolute;
+        top : 50%;
+        left : 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

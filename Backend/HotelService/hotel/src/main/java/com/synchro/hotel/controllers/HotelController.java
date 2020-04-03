@@ -15,6 +15,7 @@ import com.synchro.hotel.models.Viability;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path = "/hotel")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HotelController {
     
     @Autowired
@@ -35,13 +37,13 @@ public class HotelController {
     private DAOLocation daoLocation = new DAOLocation();
 
     @RequestMapping(method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000")
     public @ResponseBody void addNewHotel(@RequestParam final String name, @RequestParam final String city,
             @RequestParam final Integer[] viabilities, @RequestParam final Integer price) {
 
         // Primeiramente vamos fazer a normalização do array de viabilidades em uma
         // tabela apropriada ao hotel
         final Viability[] viability = new Viability[12];
-
         for (int i = 0; i < viability.length; i++) {
             viability[i] = new Viability(name, i + 1, viabilities[i]);
         }
@@ -49,12 +51,13 @@ public class HotelController {
         final Location location = daoLocation.load(city);
 
         final Hotel hotel = new Hotel(name, location, price);
-        hotel.setViability(viability);
+        hotel.setViability(Arrays.asList(viability));
         
         daoHotel.save(hotel);
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
     public @ResponseBody Map<String, String> getHotel(@RequestParam final String name) {
 
         final Hotel hotel = daoHotel.load(name);
@@ -75,22 +78,30 @@ public class HotelController {
         */
         return map;
     }
-
     
-    @GetMapping("/hotels")
-    public @ResponseBody HashMap<Integer, HashMap<String, String>> getHotels(@RequestParam final String city) {
-
+    @GetMapping("/city-hotels")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public @ResponseBody HashMap<Integer, HashMap<String, Object>> getHotels(@RequestParam final String city) {
+        
         final List<Hotel> hotels = daoHotel.loadAll(city);
 
-        final HashMap<Integer, HashMap<String, String>> mapHotels = new HashMap<>();
+        final HashMap<Integer, HashMap<String, Object>> mapHotels = new HashMap<>();
         
-        HashMap<String, String> hotelMap;
+        HashMap<String, Object> hotelMap;
+        Integer[] viabilities = new Integer[12];
         for(int i = 0; i < hotels.size(); i++){
             hotelMap = new HashMap<>();
             hotelMap.put("name", hotels.get(i).getName());
             hotelMap.put("city", hotels.get(i).getLocation().getCity());
             hotelMap.put("price", Integer.toString(hotels.get(i).getPrice()));
+
+            for(int j = 0; j < hotels.get(i).getViability().size(); j++){
+                viabilities[j] = hotels.get(i).getViability().get(j).getViability_flag();
+            }
+            hotelMap.put("viabilities", viabilities);
+
             mapHotels.put(i, hotelMap);
+
         }
 
         return mapHotels;

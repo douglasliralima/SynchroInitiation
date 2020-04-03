@@ -1,0 +1,142 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%); }
+  80% {
+    opacity: 0.6;
+    transform: translateX(10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0%); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%); }
+  80% {
+    opacity: 0.6;
+    transform: translateX(-10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0%); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(200px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0px); } }
+
+body {
+  font-family: "lato", sans-serif;
+  background: whitesmoke;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+  font-weight: 400; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 60px; }
+  .heading-primary--main {
+    display: block;
+    font-size: 35px;
+    font-weight: 400;
+    letter-spacing: 15px;
+    margin-bottom: 5px;
+    animation: moveInLeft 2s ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    animation: moveInRight 2s ease-out; }
+
+.btn:link, .btnvisited {
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  transition: all .2s;
+  border-radius: 10rem; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+
+.btn--bottom-animated {
+  animation-delay: 0.5s;
+  animation: moveInBottom 2s ease-out;
+  animation-fill-mode: backwards; }
+
+.filter-bar {
+  margin: 0px 50px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas: 'logo travelling-filter'; }
+
+.filter-bar img.synchro-logo {
+  display: block;
+  grid-area: logo;
+  max-height: 100px;
+  min-width: 300px; }
+
+.filter-bar .travelling-filter {
+  grid-area: travelling-filter;
+  background-color: #3d85c6ff;
+  border: 1px solid grey;
+  box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  max-width: max-content; }
+
+.filter-bar .travelling-filter label {
+  margin: 5px; }
+
+.filter-bar .travelling-filter span {
+  margin-left: 10px;
+  font-weight: bold;
+  color: white; }
+
+.filter-bar .travelling-filter input {
+  margin: 5px; }
+
+.hotel-resume {
+  margin: 5% 15%; }
+
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, #5656bde1, #6d6dcce0), url("../src/assets/travels.jpg");
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%); }
+  .header__text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }

@@ -41,4 +41,9 @@ public class Viability {
         this.viability_flag = viability_flag;
     }
 
+    @Override
+    public String toString() {
+        return "Viability [Name=" + Name + ", month=" + month + ", viability_flag=" + viability_flag + "]";
+    }
+
 }

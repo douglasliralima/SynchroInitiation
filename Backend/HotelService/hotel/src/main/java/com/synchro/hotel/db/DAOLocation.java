@@ -27,7 +27,6 @@ public class DAOLocation {
 	public String findCountryByCity() {
 		final String city = "João Pessoa";
 		final String sql = "SELECT country FROM location WHERE city = ?";
-		System.out.println(jdbcTemplate);
 		return jdbcTemplate.queryForObject(sql, new Object[]{city}, String.class);
 
 	}

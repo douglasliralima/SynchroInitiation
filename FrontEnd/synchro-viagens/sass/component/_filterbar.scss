@@ -1,0 +1,23 @@
+.filter-bar {
+    position : relative;
+    margin : 2rem 0rem;
+    display : block;
+}
+
+.travelling-filter{
+    margin : 0 auto;
+    background-color: $medium-blue;
+    border: 0.1rem solid grey;
+    box-shadow: 0 0.1rem 0.5rem rgba(104, 104, 104, 0.8);
+    border-radius: 1rem;
+    padding : 1rem;
+    max-width: max-content;
+
+    label {
+        margin : 5px;
+    }
+    
+    input{
+        margin : 5px;
+    }
+}

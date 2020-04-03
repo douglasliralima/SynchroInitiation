@@ -1,15 +1,173 @@
-html{
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit; }
 
-body{
-    background: whitesmoke;
-    margin : 30px 50px;
-    line-height: 1.4;
-}
+html {
+  font-size: 62.5%; }
 
-div.App {
-    display : grid;
-    grid-gap : 20px;
-}
+body {
+  box-sizing: border-box; }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%); }
+  80% {
+    opacity: 0.6;
+    transform: translateX(10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0%); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%); }
+  80% {
+    opacity: 0.6;
+    transform: translateX(-10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0%); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(200px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0px); } }
+
+body {
+  font-family: "lato", sans-serif;
+  background: whitesmoke;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+  font-weight: 400; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 1.5rem;
+    margin-bottom: .5rem;
+    animation: moveInLeft 2s ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1rem;
+    animation: moveInRight 2s ease-out; }
+
+.heading-filter {
+  margin-right: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+  transform: translateY(-15%); }
+  .heading-filter--main {
+    text-align: center;
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: .5rem;
+    margin-bottom: .5rem; }
+  .heading-filter--sub {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .3rem;
+    margin-bottom: .5rem; }
+
+.travelling-filter__input-description {
+  text-transform: uppercase;
+  font-weight: 550;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  color: white; }
+
+.btn:link, .btnvisited {
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  transition: all .2s;
+  border-radius: 10rem; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+
+.btn--filter {
+  position: relative;
+  font-size: 1.5rem;
+  margin-bottom: 50%; }
+
+.filter-bar {
+  position: relative;
+  margin: 2rem 0rem;
+  display: block; }
+
+.travelling-filter {
+  margin: 0 auto;
+  background-color: #6d6dcc;
+  border: 0.1rem solid grey;
+  box-shadow: 0 0.1rem 0.5rem rgba(104, 104, 104, 0.8);
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: max-content; }
+  .travelling-filter label {
+    margin: 5px; }
+  .travelling-filter input {
+    margin: 5px; }
+
+.hotel-resume {
+  margin: 5% 15%; }
+
+.footer__logo {
+  max-height: 10rem;
+  max-width: 10rem; }
+
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, #5656bde1, #6d6dcce0), url("../src/assets/travels.jpg");
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%); }
+  .header__text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.side-image {
+  position: relative;
+  height: 60vh;
+  background-image: linear-gradient(to left bottom, #DAA520e0, #FFD700e1), url("../src/assets/hero.jpg");
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%); }
+  .side-image .heading-primary {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
